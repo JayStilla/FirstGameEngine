@@ -1,14 +1,9 @@
 #include "GameEngine.h"
 
-
-void GameEngine::Run()
+Engine::Engine()
 {
-	isRunning = true; 
+}
 
-	while(isRunning)
-	{
-		Process(); 
-		Update(); 
-		Render(); 
-	}
+Engine::~Engine()
+{
 }
