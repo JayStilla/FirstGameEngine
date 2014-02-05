@@ -37,7 +37,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(ProjectDir)\libs\glfw3\include;$(ProjectDir)\libs\glew\include;$(ProjectDir)\libs\Simple OpenGL Image Library\src;$(ProjectDir)\libs\glm;$(ProjectDir)\libs\JayceDaBestMathLibrary;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)\libs\glfw3\include;$(ProjectDir)\libs\glew\include;$(ProjectDir)\libs\Simple OpenGL Image Library\src;$(ProjectDir)\libs\glm;$(ProjectDir)\libs\JayceDaBestMathLibrary;$(ProjectDir)\libs\FreeType\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LibraryPath>$(ProjectDir)\libs\glfw3\lib-msvc110;$(ProjectDir)\libs\glew\lib;$(ProjectDir)\libs\Simple OpenGL Image Library\lib;$(ProjectDir)\libs\JayceIsDaBestMathLibrary;$(LibraryPath)</LibraryPath>
@@ -71,6 +71,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Quad.cpp" />
     <ClCompile Include="Sprite.cpp" />
+    <ClCompile Include="Text.cpp" />
     <ClCompile Include="Utilities.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -78,6 +79,8 @@
     <ClInclude Include="Logging.h" />
     <ClInclude Include="Quad.h" />
     <ClInclude Include="Sprite.h" />
+    <ClInclude Include="Text.h" />
+    <ClInclude Include="TGA.h" />
     <ClInclude Include="Utilities.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

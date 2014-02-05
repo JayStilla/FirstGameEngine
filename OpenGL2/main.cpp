@@ -8,11 +8,13 @@
 #include <iostream>
 #include <SOIL.h>
 #include "Sprite.h"
-
+#include <ft2build.h>
+#include FT_FREETYPE_H
 
 // keep track of window size for things like the viewport and the mouse cursor
 int g_gl_width = 640;
 int g_gl_height = 480;
+
 
 
 // a call-back function
@@ -34,7 +36,7 @@ int main()
 	//setup to log some GLFW stuff
 
 	char message[256];
-	sprintf (message, "starting GLFW %s", glfwGetVersionString ());
+	sprintf_s(message, "starting GLFW %s", glfwGetVersionString ());
 	assert (gl_log (message, __FILE__, __LINE__));
 	glfwSetErrorCallback (glfw_error_callback);
 
@@ -129,7 +131,7 @@ int main()
 		*/
 
 		glEnable (GL_CULL_FACE); // cull face
-		glCullFace (GL_BACK); // cull back face
+		glCullFace (GL_BACK); //cull back face
 		glFrontFace (GL_CW); // GL_CCW for counter clock-wise
 
 		// wipe the drawing surface clear
@@ -158,7 +160,6 @@ int main()
 		glfwPollEvents ();
 		// put the stuff we've been drawing onto the display
 		glfwSwapBuffers (window);
-
 
 		//When do i exit?
 		if (GLFW_PRESS == glfwGetKey (window, GLFW_KEY_ESCAPE)) {
