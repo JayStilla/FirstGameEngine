@@ -93,3 +93,32 @@ void Quad::Draw()
 
 	glDrawElements(GL_TRIANGLE_STRIP, 6, GL_UNSIGNED_INT, 0); 
 }
+
+bool Quad::LoadVertShader(const char* filePath)
+{
+	std::string vs =textFileReader(filePath); 
+	const char* VertexShader = vs.c_str(); 
+	glShaderSource(m_VertexShader, 1, &VertexShader, NULL); 
+	glCompileShader(m_VertexShader); 
+	return printShaderInfoLog(m_VertexShader); 
+}
+
+bool Quad::LoadFragShader(const char* filePath)
+{
+	std::string vs = textFileReader(filePath); 
+	const char* FragmentShader = vs.c_str(); 
+	glShaderSource(m_FragmentShader, 1, &FragmentShader, NULL); 
+	glCompileShader(m_FragmentShader); 
+	return printShaderInfoLog(m_FragmentShader); 
+}
+
+bool Quad::LinkShaders()
+{
+	glAttachShader(m_ShaderProgram, m_FragmentShader); 
+	glAttachShader(m_ShaderProgram, m_VertexShader); 
+
+	glLinkProgram(m_ShaderProgram); 
+	glUseProgram(m_ShaderProgram); 
+
+	return printProgramInfoLog(m_ShaderProgram); 
+}

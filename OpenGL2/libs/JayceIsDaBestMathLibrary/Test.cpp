@@ -20,10 +20,6 @@ Vectors V2;
 int main()
 {
 	cout << "---------------------------Matrix 3--------------------------------" << endl; 
-	Matrix3 Identity;
-	Identity = Mat3.m_CreateIdentity();
-	cout << Identity; 
-	cout << endl;
 
 	Matrix3 TranslationXY; 
 	TranslationXY = Mat3.m_TranslationXY(2, 2); 
@@ -56,6 +52,11 @@ int main()
 	mat = Mat4.m_OrthoProjection(2,2,2,2,2,2);
 	cout << mat; 
 	cout << endl; 
+
+	Matrix4 Identity; 
+	mat = Mat4.m_CreateIdentity();
+	cout << Identity; 
+	cout <<endl; 
 
 	cout << "---------------------------COMMON MATH--------------------------------" << endl; 
 

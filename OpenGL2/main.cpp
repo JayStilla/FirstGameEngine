@@ -9,13 +9,103 @@
 #include <SOIL.h>
 #include "Sprite.h"
 #include <ft2build.h>
+#include "Text.h"
+#include "Utilities.h"
 #include FT_FREETYPE_H
 
-// keep track of window size for things like the viewport and the mouse cursor
-int g_gl_width = 640;
-int g_gl_height = 480;
 
 
+//Drawing text TEST
+//Computes a scaling value so that the strings
+//float computeScale(const char* strs[4]) {
+//	float maxWidth = 0;
+//	for(int i = 0; i < 4; i++) {
+//		float width = t3dDrawWidth(strs[i]);
+//		if (width > maxWidth) {
+//			maxWidth = width;
+//		}
+//	}
+//	
+//	return 2.6f / maxWidth;
+//}
+//
+//float _angle = -30.0f;
+//float _scale;
+////The four strings that are drawn
+//const char* STRS[4] = {"Video", "Tutorials", "Rock", ".com"};
+//
+//void cleanup() {
+//	t3dCleanup();
+//}
+//
+//void handleKeypress(unsigned char key, int x, int y) {
+//	switch (key) {
+//		case 27: //Escape key
+//			cleanup();
+//			exit(0);
+//	}
+//}
+//
+//void initRendering() {
+//	glEnable(GL_DEPTH_TEST);
+//	glEnable(GL_COLOR_MATERIAL);
+//	glEnable(GL_LIGHTING);
+//	glEnable(GL_LIGHT0);
+//	glEnable(GL_NORMALIZE);
+//	glShadeModel(GL_SMOOTH);
+//	t3dInit();
+//}
+//
+//void handleResize(int w, int h) {
+//	glViewport(0, 0, w, h);
+//	glMatrixMode(GL_PROJECTION);
+//	glLoadIdentity();
+//	glPerspective(45.0, (double)w / (double)h, 1.0, 200.0);
+//}
+//
+//void drawScene() {
+//	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+//	
+//	glMatrixMode(GL_MODELVIEW);
+//	glLoadIdentity();
+//	glTranslatef(0.0f, 0.0f, -8.0f);
+//	
+//	GLfloat ambientColor[] = {0.4f, 0.4f, 0.4f, 1.0f};
+//	glLightModelfv(GL_LIGHT_MODEL_AMBIENT, ambientColor);
+//	
+//	GLfloat lightColor0[] = {0.6f, 0.6f, 0.6f, 1.0f};
+//	GLfloat lightPos0[] = {-0.5f, 0.5f, 1.0f, 0.0f};
+//	glLightfv(GL_LIGHT0, GL_DIFFUSE, lightColor0);
+//	glLightfv(GL_LIGHT0, GL_POSITION, lightPos0);
+//	
+//	glRotatef(20.0f, 1.0f, 0.0f, 0.0f);
+//	glRotatef(-_angle, 0.0f, 1.0f, 0.0f);
+//	
+//	//Draw the strings along the sides of a square
+//	glScalef(_scale, _scale, _scale);
+//	glColor3f(0.3f, 1.0f, 0.3f);
+//	for(int i = 0; i < 4; i++) {
+//		glPushMatrix();
+//		glRotatef(90 * i, 0, 1, 0);
+//		glTranslatef(0, 0, 1.5f / _scale);
+//		t3dDraw3D(STRS[i], 0, 0, 0.2f);
+//		glPopMatrix();
+//	}
+//	
+//	glfwSwapBuffers(window);
+//}
+//
+//void update(int value) {
+//	_angle += 1.5f;
+//	if (_angle > 360) {
+//		_angle -= 360;
+//	}
+//	
+//	glfwPostRedisplay();
+//	glfwTimerFunc(25, update, 0);
+//}
+
+/////////////////////////////////////////////END TEST
 
 // a call-back function
 void glfw_window_size_callback (GLFWwindow* window, int width, int height) {
@@ -39,8 +129,8 @@ int main()
 	sprintf_s(message, "starting GLFW %s", glfwGetVersionString ());
 	assert (gl_log (message, __FILE__, __LINE__));
 	glfwSetErrorCallback (glfw_error_callback);
-
-
+	
+	
 
 	//open an OS window using GLFW
 	if(!glfwInit())
@@ -116,6 +206,8 @@ int main()
 	//int matrix_location = glGetUniformLocation (shaderProgram, "matrix");
 	//glUniform1i(glGetUniformLocation(shaderProgram, "Texture"), 0);
 
+	Ortho = new Matrix4(); 
+	Orthographic(0, g_gl_width, g_gl_height, 0, 0, -1, Ortho); 
 
 	while (!glfwWindowShouldClose (window)) {
 
@@ -139,7 +231,20 @@ int main()
 		//resize window
 		glViewport (0, 0, g_gl_width, g_gl_height);
 
+		//TESTING TEXT
 
+		
+		//_scale = computeScale(STRS);
+
+		//glfwDisplayFunc(drawScene);
+		//glfwGetKey(handleKeypress);
+		//glfwReshapeFunc(handleResize);
+		//glfwTimerFunc(25, update, 0);
+
+		//glfwMainLoop();
+
+
+		///////////////////////////////////////END TEST
 
 		// update the matrix
 		//  matrix[12] = elapsed_seconds * speed + last_position;

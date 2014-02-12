@@ -25,6 +25,9 @@ public:
 	GLuint m_ShaderProgram; 
 
 	void Draw(); 
+	bool LoadVertShader(const char* filePath); 
+	bool LoadFragShader(const char* filePath);
+	bool LinkShaders(); 
 private:
 
 };

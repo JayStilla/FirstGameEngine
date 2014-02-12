@@ -46,7 +46,7 @@ public:
 
 private:
 	Vertex m_aoVerts[4]; 
-	float * modelMatrix; 
+	Matrix4 * modelMatrix; 
 
 	Vectors m_v2Scale; 
 	Vector3 m_v3Position; 
@@ -64,7 +64,7 @@ private:
 	unsigned int m_uDestinationBlendMode; 
 	int tex_loc; 
 	int matrix_location; 
-
+	unsigned int proj_location;
 };
 
 

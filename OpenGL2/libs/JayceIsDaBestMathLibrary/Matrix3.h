@@ -14,7 +14,6 @@ class DLLEXPORT Matrix3
 {
 public:
 	float a_fMatricesMatrix2D [3][3];
-	Matrix3 m_CreateIdentity();
 	Matrix3 m_TranslationXY(float x, float y);
 
 	Matrix3 operator*(Matrix3 &w);

@@ -46,6 +46,20 @@ Sprite::Sprite(void)
 
 	glUseProgram(m_ShaderProgram);
 
+	/////////////////////////////////////////////ORTHO CAM EDIT TO WORK WITH YOUR MATH LIB
+	m_v2Scale = Vectors(g_gl_width, g_gl_height); 
+	m_v3Position = Vector3(0,0,0); 
+
+	modelMatrix = new Matrix4(); 
+
+	*modelMatrix = modelMatrix->m_CreateIdentity(); 
+
+	modelMatrix->a_fMatricesMatrix3D[12] = m_v3Position.x; 
+
+	modelMatrix->a_fMatricesMatrix3D[13] = m_v3Position.y; 
+	modelMatrix->a_fMatricesMatrix3D[14] = m_v3Position.z; 
+
+	proj_location = glGetUniformLocation(m_ShaderProgram, "projection");  
 }
 
 
@@ -58,50 +72,10 @@ Sprite::Sprite( const char* a_pTexture, int a_iWidth, int a_iHeight, Vector4 a_v
 	GameWindow = window;
 	//Default Shaders for Default constructor
 
-	const char * VertexShader =	// Vertex Shaders deal with objects in 3D space
-		"#version 330\n"
-		"in vec3 position;"
-		"in vec4 color;"
-		"in vec2 texcoord;"
-		"out vec2 UV;"
-		"out vec4 vColor;"
-		"uniform mat4 matrix;" // our matrix
-		"void main() {"
-		"	UV = texcoord;"
-		"	gl_Position = matrix * vec4 (position, 1.0);"
-		"	vColor = color;"
-		"}";
+	LoadVertShader("../resources/VertexShader.glsl"); 
+	LoadFragShader("../resources/FragShader.glsl"); 
+	LinkShaders(); 
 
-	const char * FragmentShader =	// Fragment Shaders dela with pixel data
-		"#version 330\n"
-		"in vec4 vColor;"
-		"in vec2 UV;"
-		"out vec4 outColour;"
-		"uniform sampler2D diffuseTexture;"
-		"void main () {"
-		"	outColour =  texture2D(diffuseTexture, UV) * vColor;"
-		"}";
-	// Compile Vertex Shader
-	m_VertexShader = glCreateShader(GL_VERTEX_SHADER);
-	glShaderSource(m_VertexShader, 1, &VertexShader, NULL);
-	glCompileShader(m_VertexShader);
-	printShaderInfoLog(m_VertexShader);
-
-	// Compile Fragment Shader
-	m_FragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-	glShaderSource(m_FragmentShader, 1, &FragmentShader, NULL);
-	glCompileShader(m_FragmentShader);
-	printShaderInfoLog(m_FragmentShader);
-
-	// Link Shaders into Shader Program
-	m_ShaderProgram = glCreateProgram();
-
-	glAttachShader(m_ShaderProgram, m_FragmentShader);
-	glAttachShader(m_ShaderProgram, m_VertexShader);
-
-	glLinkProgram(m_ShaderProgram);
-	printProgramInfoLog(m_ShaderProgram);
-	glUseProgram(m_ShaderProgram);
 
 	m_v4SpriteColor = a_v4Color;
 
@@ -165,16 +139,7 @@ Sprite::Sprite( const char* a_pTexture, int a_iWidth, int a_iHeight, Vector4 a_v
 
 	glBindVertexArray(0);
 	m_v3Position = Vector3(0,0,0);
-	modelMatrix =new float[16];	
-	float temp[]= 
-	{
-		1,0,0,0,
-		0,1,0,0,
-		0,0,1,0,
-		0,0,0,1
-	};
-	memcpy(modelMatrix,temp,16*sizeof(float)); //not sure of a better way
-
+	
 	matrix_location = glGetUniformLocation (m_ShaderProgram, "matrix");
 
 	m_uiTexture = 0;
@@ -223,8 +188,18 @@ void Sprite::Draw()
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_EBO);
 	glBindVertexArray(m_VAO);
 
+	glDrawElements(GL_TRIANGLE_STRIP, 4,GL_UNSIGNED_INT,0);
 
-	glDrawElements(GL_TRIANGLE_STRIP, 4,GL_UNSIGNED_INT,0);	
+	//////////////////////MORE SHIT TO EDIT TO WORK WITH YOUR CODE/////////////
+	modelMatrix->a_fMatricesMatrix3D[0] = m_v2Scale.x; 
+	modelMatrix->a_fMatricesMatrix3D[5] = m_v2Scale.y; 
+	modelMatrix->a_fMatricesMatrix3D[12] = m_v3Position.x; 
+	modelMatrix->a_fMatricesMatrix3D[13] = m_v3Position.y;
+	modelMatrix->a_fMatricesMatrix3D[14] = m_v3Position.z; 
+
+	Matrix4 MVP = (*Ortho * *modelMatrix); 
+
+	glUniformMatrix4fv(matrix_location,1,GL_FALSE,MVP.a_fMatricesMatrix3D); 
 }
 
 void Sprite::Input()
