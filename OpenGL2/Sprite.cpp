@@ -23,6 +23,8 @@ Sprite::Sprite(void)
 		"void main () {"
 		"	outColour = vColor;"
 		"}";
+
+	
 	// Compile Vertex Shader
 	m_VertexShader = glCreateShader(GL_VERTEX_SHADER);
 	glShaderSource(m_VertexShader, 1, &VertexShader, NULL);
@@ -46,20 +48,6 @@ Sprite::Sprite(void)
 
 	glUseProgram(m_ShaderProgram);
 
-	/////////////////////////////////////////////ORTHO CAM EDIT TO WORK WITH YOUR MATH LIB
-	m_v2Scale = Vectors(g_gl_width, g_gl_height); 
-	m_v3Position = Vector3(0,0,0); 
-
-	modelMatrix = new Matrix4(); 
-
-	*modelMatrix = modelMatrix->m_CreateIdentity(); 
-
-	modelMatrix->a_fMatricesMatrix3D[12] = m_v3Position.x; 
-
-	modelMatrix->a_fMatricesMatrix3D[13] = m_v3Position.y; 
-	modelMatrix->a_fMatricesMatrix3D[14] = m_v3Position.z; 
-
-	proj_location = glGetUniformLocation(m_ShaderProgram, "projection");  
 }
 
 
@@ -68,15 +56,15 @@ Sprite::~Sprite(void)
 }
 Sprite::Sprite( const char* a_pTexture, int a_iWidth, int a_iHeight, Vector4 a_v4Color ,GLFWwindow * window)
 {
+ 
+	LoadVertShader("VertexShader.glsl"); 
+	LoadFragShader("FragShader.glsl"); 
+	LinkShaders(); 
 
 	GameWindow = window;
 	//Default Shaders for Default constructor
 
-	LoadVertShader("../resources/VertexShader.glsl"); 
-	LoadFragShader("../resources/FragShader.glsl"); 
-	LinkShaders(); 
-
-
+	
 	m_v4SpriteColor = a_v4Color;
 
 	m_aoVerts[0].Pos = Vector3(	-0.5f,  0.5f,  0.0f);
@@ -100,8 +88,8 @@ Sprite::Sprite( const char* a_pTexture, int a_iWidth, int a_iHeight, Vector4 a_v
 
 
 	m_aoVerts[0].UV = Vectors(0.0f,  0.0f);
-	m_aoVerts[1].UV = Vectors(0.0f,  1.0f);
-	m_aoVerts[2].UV = Vectors(1.0f,  0.0f);
+	m_aoVerts[1].UV = Vectors(1.0f,  0.0f);
+	m_aoVerts[2].UV = Vectors(0.0f,  1.0f);
 	m_aoVerts[3].UV = Vectors(1.0f,  1.0f);
 
 	GLuint elements[] =
@@ -139,7 +127,22 @@ Sprite::Sprite( const char* a_pTexture, int a_iWidth, int a_iHeight, Vector4 a_v
 
 	glBindVertexArray(0);
 	m_v3Position = Vector3(0,0,0);
-	
+
+	/////////////////////////////////////////////ORTHO CAM EDIT TO WORK WITH YOUR MATH LIB
+	m_v2Scale = Vectors(a_iWidth, a_iHeight); 
+	 
+
+	modelMatrix = new Matrix4(); 
+
+	*modelMatrix = modelMatrix->m_CreateIdentity(); 
+
+	modelMatrix->a_fMatricesMatrix3D[12] = m_v3Position.x; 
+
+	modelMatrix->a_fMatricesMatrix3D[13] = m_v3Position.y; 
+	modelMatrix->a_fMatricesMatrix3D[14] = m_v3Position.z; 
+
+	proj_location = glGetUniformLocation(m_ShaderProgram, "projection");
+
 	matrix_location = glGetUniformLocation (m_ShaderProgram, "matrix");
 
 	m_uiTexture = 0;
@@ -169,6 +172,8 @@ Sprite::Sprite( const char* a_pTexture, int a_iWidth, int a_iHeight, Vector4 a_v
 	glUseProgram (m_ShaderProgram);
 	glUniform1i (tex_loc, 0); // use active texture 0
 
+ 
+
 }
 
 void Sprite::Draw()
@@ -176,30 +181,27 @@ void Sprite::Draw()
 	glBlendFunc (m_uSourceBlendMode, m_uDestinationBlendMode);
 	glUseProgram(m_ShaderProgram);
 	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, m_uiTexture); 
 	glUniform1i (tex_loc, 0); 
+	//Setting scale 
+	modelMatrix->a_fMatricesMatrix3D[0] = m_v2Scale.x; 
+	modelMatrix->a_fMatricesMatrix3D[5] = m_v2Scale.y;
+	//setting position
+	modelMatrix->a_fMatricesMatrix3D[12] = m_v3Position.x;
+	modelMatrix->a_fMatricesMatrix3D[13] = m_v3Position.y;
+	modelMatrix->a_fMatricesMatrix3D[14] = m_v3Position.z;
+	
+	//new ortho matrix
+	Matrix4 MVP = (*Ortho * *modelMatrix);
 
-	modelMatrix[12] = m_v3Position.x;
-	modelMatrix[13] = m_v3Position.y;
-	modelMatrix[14] = m_v3Position.z;
-
-
-	glUniformMatrix4fv (matrix_location, 1, GL_FALSE, modelMatrix);
+	glUniformMatrix4fv (matrix_location, 1, GL_FALSE, MVP.a_fMatricesMatrix3D);
 
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_EBO);
 	glBindVertexArray(m_VAO);
 
-	glDrawElements(GL_TRIANGLE_STRIP, 4,GL_UNSIGNED_INT,0);
+	glDrawElements(GL_TRIANGLE_STRIP,4,GL_UNSIGNED_INT,0);
 
-	//////////////////////MORE SHIT TO EDIT TO WORK WITH YOUR CODE/////////////
-	modelMatrix->a_fMatricesMatrix3D[0] = m_v2Scale.x; 
-	modelMatrix->a_fMatricesMatrix3D[5] = m_v2Scale.y; 
-	modelMatrix->a_fMatricesMatrix3D[12] = m_v3Position.x; 
-	modelMatrix->a_fMatricesMatrix3D[13] = m_v3Position.y;
-	modelMatrix->a_fMatricesMatrix3D[14] = m_v3Position.z; 
-
-	Matrix4 MVP = (*Ortho * *modelMatrix); 
-
-	glUniformMatrix4fv(matrix_location,1,GL_FALSE,MVP.a_fMatricesMatrix3D); 
+	
 }
 
 void Sprite::Input()

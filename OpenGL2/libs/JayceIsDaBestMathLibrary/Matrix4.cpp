@@ -10,6 +10,91 @@ Matrix4::~Matrix4()
 {
 }
 
+Matrix4 Matrix4::operator=(Matrix4 &w)
+{
+	for(int i = 0; i < 16; i++)
+	{
+		a_fMatricesMatrix3D[i] = w.a_fMatricesMatrix3D[i]; 
+	}
+	return *this; 
+}
+
+Matrix4 Matrix4::operator*(Matrix4 &w)
+{
+	Matrix4 temp;
+	//column 0
+	temp.a_fMatricesMatrix3D[0] = w.a_fMatricesMatrix3D[0] * a_fMatricesMatrix3D[0] + 
+								w.a_fMatricesMatrix3D[4] * a_fMatricesMatrix3D[1] + 
+								w.a_fMatricesMatrix3D[8] * a_fMatricesMatrix3D[2] + 
+								w.a_fMatricesMatrix3D[12] * a_fMatricesMatrix3D[3];
+
+	temp.a_fMatricesMatrix3D[4] = w.a_fMatricesMatrix3D[0] * a_fMatricesMatrix3D[4] + 
+								w.a_fMatricesMatrix3D[4] * a_fMatricesMatrix3D[5] + 
+								w.a_fMatricesMatrix3D[8] * a_fMatricesMatrix3D[6] + 
+								w.a_fMatricesMatrix3D[12] * a_fMatricesMatrix3D[7]; 
+	temp.a_fMatricesMatrix3D[8] = w.a_fMatricesMatrix3D[0] * a_fMatricesMatrix3D[8]; 
+								w.a_fMatricesMatrix3D[4] * a_fMatricesMatrix3D[9] + 
+								w.a_fMatricesMatrix3D[8] * a_fMatricesMatrix3D[10] +
+								w.a_fMatricesMatrix3D[12] * a_fMatricesMatrix3D[11];
+	temp.a_fMatricesMatrix3D[12] = w.a_fMatricesMatrix3D[0] * a_fMatricesMatrix3D[12] + 
+								w.a_fMatricesMatrix3D[4] * a_fMatricesMatrix3D[13] + 
+								w.a_fMatricesMatrix3D[8] * a_fMatricesMatrix3D[14] + 
+								w.a_fMatricesMatrix3D[12] * a_fMatricesMatrix3D[15]; 
+	//column 1 
+	temp.a_fMatricesMatrix3D[1] = w.a_fMatricesMatrix3D[1] * a_fMatricesMatrix3D[0] + 
+								w.a_fMatricesMatrix3D[5] * a_fMatricesMatrix3D[1] + 
+								w.a_fMatricesMatrix3D[9] * a_fMatricesMatrix3D[2] + 
+								w.a_fMatricesMatrix3D[13] * a_fMatricesMatrix3D[3]; 
+	temp.a_fMatricesMatrix3D[5] = w.a_fMatricesMatrix3D[1] * a_fMatricesMatrix3D[4] + 
+								w.a_fMatricesMatrix3D[5] * a_fMatricesMatrix3D[5] + 
+								w.a_fMatricesMatrix3D[9] * a_fMatricesMatrix3D[6] + 
+								w.a_fMatricesMatrix3D[13] * a_fMatricesMatrix3D[7]; 
+	temp.a_fMatricesMatrix3D[9] = w.a_fMatricesMatrix3D[1] * a_fMatricesMatrix3D[8] + 
+								w.a_fMatricesMatrix3D[5] * a_fMatricesMatrix3D[9] + 
+								w.a_fMatricesMatrix3D[9] * a_fMatricesMatrix3D[10] + 
+								w.a_fMatricesMatrix3D[13] * a_fMatricesMatrix3D[11]; 
+	temp.a_fMatricesMatrix3D[13] = w.a_fMatricesMatrix3D[1] * a_fMatricesMatrix3D[12] + 
+								w.a_fMatricesMatrix3D[5] * a_fMatricesMatrix3D[13] + 
+								w.a_fMatricesMatrix3D[9] * a_fMatricesMatrix3D[14] + 
+								w.a_fMatricesMatrix3D[13] * a_fMatricesMatrix3D[15]; 
+	//column 2
+	temp.a_fMatricesMatrix3D[2] = w.a_fMatricesMatrix3D[2] * a_fMatricesMatrix3D[0] + 
+								w.a_fMatricesMatrix3D[6] * a_fMatricesMatrix3D[1] + 
+								w.a_fMatricesMatrix3D[10] * a_fMatricesMatrix3D[2] + 
+								w.a_fMatricesMatrix3D[14] * a_fMatricesMatrix3D[3];  
+	temp.a_fMatricesMatrix3D[6] = w.a_fMatricesMatrix3D[2] * a_fMatricesMatrix3D[4] + 
+								w.a_fMatricesMatrix3D[6] * a_fMatricesMatrix3D[5] + 
+								w.a_fMatricesMatrix3D[10] * a_fMatricesMatrix3D[6] + 
+								w.a_fMatricesMatrix3D[14] * a_fMatricesMatrix3D[7]; 
+	temp.a_fMatricesMatrix3D[10] = w.a_fMatricesMatrix3D[2] * a_fMatricesMatrix3D[8] + 
+								w.a_fMatricesMatrix3D[6] * a_fMatricesMatrix3D[9] + 
+								w.a_fMatricesMatrix3D[10] * a_fMatricesMatrix3D[10] + 
+								w.a_fMatricesMatrix3D[14] * a_fMatricesMatrix3D[11]; 
+	temp.a_fMatricesMatrix3D[14] = w.a_fMatricesMatrix3D[2] * a_fMatricesMatrix3D[12] + 
+								w.a_fMatricesMatrix3D[6] * a_fMatricesMatrix3D[13] + 
+								w.a_fMatricesMatrix3D[10] * a_fMatricesMatrix3D[14] + 
+								w.a_fMatricesMatrix3D[14] * a_fMatricesMatrix3D[15]; 
+	//column 3
+	temp.a_fMatricesMatrix3D[3] = w.a_fMatricesMatrix3D[3] * a_fMatricesMatrix3D[0] + 
+								w.a_fMatricesMatrix3D[7] * a_fMatricesMatrix3D[1] + 
+								w.a_fMatricesMatrix3D[11] * a_fMatricesMatrix3D[2] + 
+								w.a_fMatricesMatrix3D[15] * a_fMatricesMatrix3D[3]; 
+	temp.a_fMatricesMatrix3D[7] = w.a_fMatricesMatrix3D[3] * a_fMatricesMatrix3D[4] + 
+								w.a_fMatricesMatrix3D[7] * a_fMatricesMatrix3D[5] + 
+								w.a_fMatricesMatrix3D[11] * a_fMatricesMatrix3D[6] + 
+								w.a_fMatricesMatrix3D[15] * a_fMatricesMatrix3D[7];
+	temp.a_fMatricesMatrix3D[11] = w.a_fMatricesMatrix3D[3] * a_fMatricesMatrix3D[8] + 
+								w.a_fMatricesMatrix3D[7] * a_fMatricesMatrix3D[9] + 
+								w.a_fMatricesMatrix3D[11] * a_fMatricesMatrix3D[10] + 
+								w.a_fMatricesMatrix3D[15] * a_fMatricesMatrix3D[11]; 
+	temp.a_fMatricesMatrix3D[15] = w.a_fMatricesMatrix3D[3] * a_fMatricesMatrix3D[12] + 
+								w.a_fMatricesMatrix3D[7] * a_fMatricesMatrix3D[13] + 
+								w.a_fMatricesMatrix3D[11] * a_fMatricesMatrix3D[14] + 
+								w.a_fMatricesMatrix3D[15] * a_fMatricesMatrix3D[15]; 
+
+	return temp;
+}
+
 //BUILDING X ROTATION////////////////////////////
 Matrix4 Matrix4::m_RotationX(float rot)
 {

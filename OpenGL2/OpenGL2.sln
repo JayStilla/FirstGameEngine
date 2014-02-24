@@ -2,6 +2,11 @@
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OpenGL2", "OpenGL2.vcxproj", "{55C7AA16-7234-4E30-985D-7C3497AEEC29}"
+	ProjectSection(ProjectDependencies) = postProject
+		{611729CF-3886-4468-9A72-4930FEE98A5F} = {611729CF-3886-4468-9A72-4930FEE98A5F}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "JayceIsDaBestMathLibrary", "libs\JayceIsDaBestMathLibrary\JayceIsDaBestMathLibrary.vcxproj", "{611729CF-3886-4468-9A72-4930FEE98A5F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,6 +18,10 @@ Global
 		{55C7AA16-7234-4E30-985D-7C3497AEEC29}.Debug|Win32.Build.0 = Debug|Win32
 		{55C7AA16-7234-4E30-985D-7C3497AEEC29}.Release|Win32.ActiveCfg = Release|Win32
 		{55C7AA16-7234-4E30-985D-7C3497AEEC29}.Release|Win32.Build.0 = Release|Win32
+		{611729CF-3886-4468-9A72-4930FEE98A5F}.Debug|Win32.ActiveCfg = Debug|Win32
+		{611729CF-3886-4468-9A72-4930FEE98A5F}.Debug|Win32.Build.0 = Debug|Win32
+		{611729CF-3886-4468-9A72-4930FEE98A5F}.Release|Win32.ActiveCfg = Release|Win32
+		{611729CF-3886-4468-9A72-4930FEE98A5F}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

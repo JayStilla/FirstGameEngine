@@ -1,5 +1,5 @@
 
-			#version 330\n
+			#version 330
 		in vec4 vColor;
 		in vec2 UV;
 		out vec4 outColour;

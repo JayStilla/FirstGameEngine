@@ -40,7 +40,7 @@
     <IncludePath>$(ProjectDir)\libs\glfw3\include;$(ProjectDir)\libs\glew\include;$(ProjectDir)\libs\Simple OpenGL Image Library\src;$(ProjectDir)\libs\glm;$(ProjectDir)\libs\JayceDaBestMathLibrary;$(ProjectDir)\libs\FreeType\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <LibraryPath>$(ProjectDir)\libs\glfw3\lib-msvc110;$(ProjectDir)\libs\glew\lib;$(ProjectDir)\libs\Simple OpenGL Image Library\lib;$(ProjectDir)\libs\JayceIsDaBestMathLibrary;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(ProjectDir)\libs\glfw3\lib-msvc110;$(ProjectDir)\libs\glew\lib;$(ProjectDir)\libs\Simple OpenGL Image Library\lib;$(ProjectDir)\libs\JayceIsDaBestMathLibrary\Debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

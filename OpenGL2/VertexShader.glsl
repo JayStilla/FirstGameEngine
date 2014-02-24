@@ -1,4 +1,4 @@
-		#version 330\n
+		#version 330
 		in vec3 position;
 		in vec4 color;
 		in vec2 texcoord;

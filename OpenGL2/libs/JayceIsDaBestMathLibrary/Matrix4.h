@@ -11,6 +11,8 @@ using namespace std;
         #define DLLEXPORT __declspec(dllimport)
 #endif
 
+//
+
 class DLLEXPORT Matrix4
 {
 public:
@@ -30,6 +32,8 @@ public:
 	Matrix4 m_OrthoProjection(float l, float r, float b, float n, float f, float t); 
 	void m_OrthoVariables(float angle, float imageAspectRatio, float n, float f); 
 	Matrix4 m_CreateIdentity();
+	Matrix4 operator*(Matrix4 &w);
+	Matrix4 operator=(Matrix4 &w); 
 
 	inline friend ostream& operator<< (ostream &os, const Matrix4 &Mat4)
 	{
