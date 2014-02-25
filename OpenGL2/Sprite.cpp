@@ -208,22 +208,22 @@ void Sprite::Input()
 {
 	if (GLFW_PRESS == glfwGetKey(GameWindow, GLFW_KEY_W))
 	{
-		m_v3Position += Vector3(0.0f, 0.005f, 0.0f);
+		m_v3Position += Vector3(0.0f, 0.5f, 0.0f);
 	}
 
 	if (GLFW_PRESS == glfwGetKey(GameWindow, GLFW_KEY_A))
 	{
-		m_v3Position += Vector3(-0.005f, 0.0f, 0.0f);
+		m_v3Position += Vector3(-0.5f, 0.0f, 0.0f);
 	}
 
 	if (GLFW_PRESS == glfwGetKey(GameWindow, GLFW_KEY_S))
 	{
-		m_v3Position += Vector3(0.0f, -0.005f, 0.0f);
+		m_v3Position += Vector3(0.0f, -0.5f, 0.0f);
 	}
 
 	if (GLFW_PRESS == glfwGetKey(GameWindow, GLFW_KEY_D))
 	{
-		m_v3Position += Vector3(0.005f, 0.0f, 0.0f);
+		m_v3Position += Vector3(0.5f, 0.0f, 0.0f);
 	}
 
 }
