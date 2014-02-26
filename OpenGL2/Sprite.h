@@ -41,21 +41,24 @@ public:
 	Sprite(void); 
 	~Sprite(void); 
 	Sprite(const char*, int, int, Vector4, GLFWwindow*); 
-	void Draw(); 
+	void SetUVData(); 
+	void SetTexture(const char* a_pTexture); 
+	virtual void Draw(); 
 	void Input(); 
 
-private:
+protected:
 	Vertex m_aoVerts[4]; 
 	Matrix4 * modelMatrix; 
 
-	Vectors m_v2Scale; 
-	Vector3 m_v3Position; 
-	Vector4 m_v4SpriteColor; 
+	Vectors m_uv2Scale; 
+	Vector3 m_uv3Position; 
+	Vector4 m_uv4SpriteColor; 
 
 	Vectors m_minUVCoords; 
 	Vectors m_maxUVCoords; 
 	Vectors m_uvScale; 
 	Vectors m_uvOffset; 
+	float m_fZoom; 
 
 	unsigned int m_uiTexture; 
 	GLFWwindow * GameWindow; 

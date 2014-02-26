@@ -37,7 +37,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(ProjectDir)\libs\glfw3\include;$(ProjectDir)\libs\glew\include;$(ProjectDir)\libs\Simple OpenGL Image Library\src;$(ProjectDir)\libs\glm;$(ProjectDir)\libs\JayceDaBestMathLibrary;$(ProjectDir)\libs\FreeType\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)\libs\glfw3\include;$(ProjectDir)\libs\glew\include;$(ProjectDir)\libs\Simple OpenGL Image Library\src;$(ProjectDir)\libs\glm;$(ProjectDir)\libs\JayceDaBestMathLibrary;$(ProjectDir)\libs\FreeType\include;$(ProjectDir)\libs\tinyxml2-master;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LibraryPath>$(ProjectDir)\libs\glfw3\lib-msvc110;$(ProjectDir)\libs\glew\lib;$(ProjectDir)\libs\Simple OpenGL Image Library\lib;$(ProjectDir)\libs\JayceIsDaBestMathLibrary\Debug;$(LibraryPath)</LibraryPath>
@@ -66,6 +66,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AnimatedSprite.cpp" />
     <ClCompile Include="GameEngine.cpp" />
     <ClCompile Include="Logging.cpp" />
     <ClCompile Include="main.cpp" />
@@ -75,6 +76,7 @@
     <ClCompile Include="Utilities.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AnimatedSprite.h" />
     <ClInclude Include="GameEngine.h" />
     <ClInclude Include="Logging.h" />
     <ClInclude Include="Quad.h" />
