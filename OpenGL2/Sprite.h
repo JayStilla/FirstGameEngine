@@ -50,9 +50,9 @@ protected:
 	Vertex m_aoVerts[4]; 
 	Matrix4 * modelMatrix; 
 
-	Vectors m_uv2Scale; 
-	Vector3 m_uv3Position; 
-	Vector4 m_uv4SpriteColor; 
+	Vectors m_v2Scale; 
+	Vector3 m_v3Position; 
+	Vector4 m_v4SpriteColor; 
 
 	Vectors m_minUVCoords; 
 	Vectors m_maxUVCoords; 

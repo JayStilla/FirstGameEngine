@@ -8,7 +8,9 @@
 #include "libs\JayceIsDaBestMathLibrary\Matrix4.h"
 
 #include <map>
-#include <vector> 
+#include <queue>
+#include <vector>
+#include <time.h>
 
 // keep track of window size for things like the viewport and the mouse cursor
 extern int g_gl_width;

@@ -5,7 +5,6 @@
 #include <string> 
 #include <tinyxml2.h>
 
-
 struct AniSprite
 {
 	union{
@@ -30,7 +29,7 @@ struct Atlas
 	std::string sAnimations; 
 };
 
-
+typedef std::vector<std::string> frame; 
 
 class AnimatedSprite : public Sprite
 {
@@ -41,8 +40,8 @@ public:
 	virtual void Draw(); 
 	void Update(); 
 	void SetAnimation(std::string animation, PlayType type);
-	void SetAnimation(std::string animation, PlayType type
-	void PlatAnimation(); 
+	void SetAnimation(std::string animation, PlayType type, int frame); 
+	void PlayAnimation(); 
 	void SetSprite(); 
 	void LoadSprite(const char* a_pSpriteSheet); 
 	void LoadAnimation(const char* a_pAnimationSheet); 

@@ -65,7 +65,7 @@ Sprite::Sprite( const char* a_pTexture, int a_iWidth, int a_iHeight, Vector4 a_v
 	//Default Shaders for Default constructor
 
 	
-	m_uv4SpriteColor = a_v4Color;
+	m_v4SpriteColor = a_v4Color;
 
 	m_aoVerts[0].Pos = Vector3(	-0.5f,  0.5f,  0.0f);
 	m_aoVerts[1].Pos = Vector3(	0.5f,  0.5f,  0.0f);
@@ -80,10 +80,10 @@ Sprite::Sprite( const char* a_pTexture, int a_iWidth, int a_iHeight, Vector4 a_v
 	
 
 
-	m_aoVerts[0].Color = m_uv4SpriteColor;
-	m_aoVerts[1].Color = m_uv4SpriteColor;
-	m_aoVerts[2].Color = m_uv4SpriteColor;
-	m_aoVerts[3].Color = m_uv4SpriteColor;
+	m_aoVerts[0].Color = m_v4SpriteColor;
+	m_aoVerts[1].Color = m_v4SpriteColor;
+	m_aoVerts[2].Color = m_v4SpriteColor;
+	m_aoVerts[3].Color = m_v4SpriteColor;
 
 
 
@@ -126,20 +126,20 @@ Sprite::Sprite( const char* a_pTexture, int a_iWidth, int a_iHeight, Vector4 a_v
 	glVertexAttribPointer(uvAttrib, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)(7 * sizeof(float)));
 
 	glBindVertexArray(0);
-	m_uv3Position = Vector3(0,0,0);
+	m_v3Position = Vector3(0,0,0);
 
 	/////////////////////////////////////////////ORTHO CAM EDIT TO WORK WITH YOUR MATH LIB
-	m_uv2Scale = Vectors(a_iWidth, a_iHeight); 
+	m_v2Scale = Vectors(a_iWidth, a_iHeight); 
 	 
 
 	modelMatrix = new Matrix4(); 
 
 	*modelMatrix = modelMatrix->m_CreateIdentity(); 
 
-	modelMatrix->a_fMatricesMatrix3D[12] = m_uv3Position.x; 
+	modelMatrix->a_fMatricesMatrix3D[12] = m_v3Position.x; 
 
-	modelMatrix->a_fMatricesMatrix3D[13] = m_uv3Position.y; 
-	modelMatrix->a_fMatricesMatrix3D[14] = m_uv3Position.z; 
+	modelMatrix->a_fMatricesMatrix3D[13] = m_v3Position.y; 
+	modelMatrix->a_fMatricesMatrix3D[14] = m_v3Position.z; 
 
 	proj_location = glGetUniformLocation(m_ShaderProgram, "projection");
 
@@ -196,7 +196,7 @@ void Sprite::SetTexture(const char * a_pTexture)
 
 	m_minUVCoords = Vectors(0.f, 0.f); 
 	m_maxUVCoords = Vectors(1.f, 1.f); 
-	m_uv2Scale = Vectors(1.f,1.f);
+	m_v2Scale = Vectors(1.f,1.f);
 	m_fZoom = 1.f; 
 
 }
@@ -209,12 +209,12 @@ void Sprite::Draw()
 	glBindTexture(GL_TEXTURE_2D, m_uiTexture); 
 	glUniform1i (tex_loc, 0); 
 	//Setting scale 
-	modelMatrix->a_fMatricesMatrix3D[0] = m_uv2Scale.x; 
-	modelMatrix->a_fMatricesMatrix3D[5] = m_uv2Scale.y;
+	modelMatrix->a_fMatricesMatrix3D[0] = m_v2Scale.x; 
+	modelMatrix->a_fMatricesMatrix3D[5] = m_v2Scale.y;
 	//setting position
-	modelMatrix->a_fMatricesMatrix3D[12] = m_uv3Position.x;
-	modelMatrix->a_fMatricesMatrix3D[13] = m_uv3Position.y;
-	modelMatrix->a_fMatricesMatrix3D[14] = m_uv3Position.z;
+	modelMatrix->a_fMatricesMatrix3D[12] = m_v3Position.x;
+	modelMatrix->a_fMatricesMatrix3D[13] = m_v3Position.y;
+	modelMatrix->a_fMatricesMatrix3D[14] = m_v3Position.z;
 	
 	//new ortho matrix
 	Matrix4 MVP = (*Ortho * *modelMatrix);
@@ -233,22 +233,22 @@ void Sprite::Input()
 {
 	if (GLFW_PRESS == glfwGetKey(GameWindow, GLFW_KEY_W))
 	{
-		m_uv3Position += Vector3(0.0f, 0.5f, 0.0f);
+		m_v3Position += Vector3(0.0f, 0.5f, 0.0f);
 	}
 
 	if (GLFW_PRESS == glfwGetKey(GameWindow, GLFW_KEY_A))
 	{
-		m_uv3Position += Vector3(-0.5f, 0.0f, 0.0f);
+		m_v3Position += Vector3(-0.5f, 0.0f, 0.0f);
 	}
 
 	if (GLFW_PRESS == glfwGetKey(GameWindow, GLFW_KEY_S))
 	{
-		m_uv3Position += Vector3(0.0f, -0.5f, 0.0f);
+		m_v3Position += Vector3(0.0f, -0.5f, 0.0f);
 	}
 
 	if (GLFW_PRESS == glfwGetKey(GameWindow, GLFW_KEY_D))
 	{
-		m_uv3Position += Vector3(0.5f, 0.0f, 0.0f);
+		m_v3Position += Vector3(0.5f, 0.0f, 0.0f);
 	}
 
 }

@@ -94,6 +94,8 @@ int main()
 	Ortho = new Matrix4(); 
 	Orthographic(0, g_gl_width, g_gl_height, 0, 0, -1, Ortho); 
 
+	float oldTimeSinceStart = 0; 
+
 	while (!glfwWindowShouldClose (window)) {
 
 		/* add a timer for doing animation
