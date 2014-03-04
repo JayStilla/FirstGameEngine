@@ -77,7 +77,7 @@ void AnimatedSprite::LoadSprite(const char* a_pSpriteSheet)
 	atlas.sSheet = childElement->Attribute("sheet"); 
 	atlas.sAnimations = childElement->Attribute("animations"); 
 
-	for(childElement = currentNode->FirstChildElement(); childElement != NULL; childElement = childElement->NextSibling())
+	for(childElement = currentNode->FirstChildElement(); childElement != NULL; childElement = childElement->NextSiblingElement())
 	{
 		str = childElement->Attribute("name"); 
 		mSprites[str].Name = str; 

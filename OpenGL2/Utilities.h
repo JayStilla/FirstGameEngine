@@ -11,6 +11,10 @@
 #include <queue>
 #include <vector>
 #include <time.h>
+#include <fstream>
+#include <assert.h>
+#include <functional>
+#include <cstdlib>
 
 // keep track of window size for things like the viewport and the mouse cursor
 extern int g_gl_width;
@@ -31,6 +35,7 @@ enum PlayType
 extern Matrix4 * Ortho; 
 void Orthographic(float a_fLeft, float a_fRight, float a_fTop, float a_fBottom, float a_fNear, float a_fFar, Matrix4 * mat); 
 
-
+double getDeltaTime(); 
+void resetDeltaTime(); 
 
 #endif

@@ -10,6 +10,7 @@
 #include "Text.h"
 #include "Utilities.h"
 #include "Quad.h"
+#include "AnimatedSprite.h"
 
 
 // a call-back function

@@ -8,9 +8,7 @@
 #include "Quad.h"
 #include <SOIL.h>
 #include "Logging.h"
-#include "libs\JayceIsDaBestMathLibrary\Vect2.h"
-#include "libs\JayceIsDaBestMathLibrary\Vect3.h"
-#include "libs\JayceIsDaBestMathLibrary\Vect4.h"
+
 
 struct Vertex
 {	union

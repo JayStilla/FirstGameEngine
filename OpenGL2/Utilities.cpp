@@ -3,6 +3,7 @@
 
 int g_gl_width = 1280;
 int g_gl_height = 720;
+double deltaTime = 0; 
 
 Matrix4 * Ortho; 
 void Orthographic(float a_fLeft, float a_fRight, float a_fTop, float a_fBottom, float a_fNear, float a_fFar, Matrix4 * mat)
@@ -33,3 +34,13 @@ void Orthographic(float a_fLeft, float a_fRight, float a_fTop, float a_fBottom, 
 	
 }
 
+double getDeltaTime()
+{
+	return deltaTime; 
+}
+
+void resetDeltaTime()
+{
+	deltaTime = glfwGetTime(); 
+	glfwSetTime(0); 
+}
