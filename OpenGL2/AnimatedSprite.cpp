@@ -10,16 +10,17 @@ AnimatedSprite::~AnimatedSprite()
 //overloaded constructor
 AnimatedSprite::AnimatedSprite(const char* a_pSpriteSheet, GLFWwindow * window)
 {
-	//assigning the window
-	GameWindow = window; 
-	//setting a base time
-	elapsedTime = 0; 
-	//loading in a sprite sheet
+	GameWindow = window;
+	elapsedTime = 0;
+	LoadVertShader("VertexShader.glsl");
+	LoadFragShader("FragShader.glsl");
+	LinkShaders();
+	GLint uvAttrib = glGetAttribLocation(m_ShaderProgram,"texcoord");
+	glEnableVertexAttribArray(uvAttrib);
+	matrix_location = glGetUniformLocation (m_ShaderProgram, "matrix");
 	LoadSprite(a_pSpriteSheet);
-	//loading in the animation atlas
 	LoadAnimation(atlas.sAnimations.c_str());
-	//setting the atlas for the animation
-	SetTexture(atlas.sSheet.c_str()); 
+	LoadTexture(atlas.sSheet.c_str());
 	
 	m_dFrames = (1.0/15.0); 
 	currentAnimation = ""; 
@@ -98,6 +99,8 @@ void AnimatedSprite::LoadAnimation(const char* a_pAnimationSheet)
 	tinyxml2::XMLElement *childElement, *child; 
 	std::string str, aniName; 
 	doc.LoadFile(a_pAnimationSheet);
+	rootNode = doc.FirstChildElement("animation");// set the root node
+	currentNode = rootNode;
 
 	for(childElement = currentNode->ToElement(); childElement != NULL; childElement = childElement->NextSiblingElement())
 	{
@@ -218,10 +221,6 @@ void AnimatedSprite::PlayAnimation()
 
 void AnimatedSprite::Draw()
 {
-	glBlendFunc(m_uSourceBlendMode, m_uDestinationBlendMode); 
-	glUseProgram(m_ShaderProgram); 
-	glActiveTexture(GL_TEXTURE0); 
-	glUniform1i(tex_loc, 0); 
 
 	modelMatrix->a_fMatricesMatrix3D[0] = m_v2Scale.x *m_fZoom; 
 	modelMatrix->a_fMatricesMatrix3D[5] = m_v2Scale.y *m_fZoom; 
@@ -239,7 +238,7 @@ void AnimatedSprite::Draw()
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_EBO); 
 	glBindVertexArray(m_VAO); 
 
-	glDrawElements(GL_TRIANGLE_STRIP, 4, GL_UNSIGNED_INT,0); 
+	glDrawElements(GL_TRIANGLE_STRIP, 4, GL_UNSIGNED_INT,0);
 }
 
 void AnimatedSprite::Input()

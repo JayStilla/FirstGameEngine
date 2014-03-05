@@ -4,11 +4,7 @@
 
 #include <GL\glew.h>
 #include "Logging.h"
-#include "libs\JayceIsDaBestMathLibrary\Vect2.h"
-#include "libs\JayceIsDaBestMathLibrary\Vect3.h"
-#include "libs\JayceIsDaBestMathLibrary\Vect4.h"
-
-
+#include "Utilities.h"
 
 class Quad
 {
@@ -23,11 +19,27 @@ public:
 	GLuint m_VertexShader; 
 
 	GLuint m_ShaderProgram; 
+	unsigned int m_uiTexture; 
+	unsigned int m_uSourceBlendMode;
+	unsigned int m_uDestinationBlendMode;
+	int tex_loc; 
+	int matrix_location; 
+	unsigned int proj_location;
+	float m_fZoom; 
+
+	GLFWwindow * GameWindow; 
+	Matrix4 * modelMatrix;
+
+	Vectors m_minUVCoords; 
+	Vectors m_maxUVCoords; 
+	Vectors m_uvScale;
+	Vertex m_aoVerts[4];
 
 	void Draw(); 
 	bool LoadVertShader(const char* filePath); 
 	bool LoadFragShader(const char* filePath);
 	bool LinkShaders(); 
+	void LoadTexture(const char* a_pTexture); 
 private:
 
 };

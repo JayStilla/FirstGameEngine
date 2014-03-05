@@ -86,14 +86,22 @@ Quad::~Quad()
 
 void Quad::Draw()
 {
-	glUseProgram(m_ShaderProgram); 
+	glBlendFunc (m_uSourceBlendMode, m_uDestinationBlendMode);
+	glUseProgram(m_ShaderProgram);
 
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_EBO); 
-	glBindVertexArray(m_VAO); 
+	glActiveTexture(GL_TEXTURE0);
+	glUniform1i (tex_loc, 0); 
 
-	glDrawElements(GL_TRIANGLE_STRIP, 6, GL_UNSIGNED_INT, 0); 
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_EBO);
+	glBindVertexArray(m_VAO);
+	glBindBuffer(GL_ARRAY_BUFFER, m_VBO);
+
+	//Put Data into buffers
+	glBufferData(GL_ARRAY_BUFFER, 4* sizeof(Vertex), m_aoVerts, GL_STATIC_DRAW);
+
+	glDrawElements(GL_TRIANGLE_STRIP, 4,GL_UNSIGNED_INT,0);	
+
 }
-
 bool Quad::LoadVertShader(const char* filePath)
 {
 	std::string vs =textFileReader(filePath); 
@@ -121,4 +129,31 @@ bool Quad::LinkShaders()
 	glUseProgram(m_ShaderProgram); 
 
 	return printProgramInfoLog(m_ShaderProgram); 
+}
+
+void Quad::LoadTexture(const char* a_pTexture)
+{
+	m_uiTexture = 0; 
+	m_uDestinationBlendMode = GL_ONE_MINUS_SRC_ALPHA; 
+
+	glGenTextures(1, &m_uiTexture); 
+	glActiveTexture(GL_TEXTURE0); 
+
+	int width, height; 
+	unsigned char* image = SOIL_load_image(a_pTexture, &width, &height, 0, SOIL_LOAD_RGBA); 
+	glBindTexture(GL_TEXTURE_2D, m_uiTexture); 
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, image); 
+	SOIL_free_image_data(image); 
+
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+
+	tex_loc = glGetUniformLocation(m_ShaderProgram, "diffuseTexture"); 
+
+	m_minUVCoords = Vectors(0.f, 0.f); 
+	m_maxUVCoords = Vectors(1.f, 1.f); 
+	m_uvScale = Vectors(1.f, 1.f); 
+	m_fZoom = 1.f; 
 }

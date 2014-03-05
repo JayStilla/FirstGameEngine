@@ -24,7 +24,7 @@ Sprite::Sprite(void)
 		"	outColour = vColor;"
 		"}";
 
-	
+	modelMatrix = new Matrix4();
 	// Compile Vertex Shader
 	m_VertexShader = glCreateShader(GL_VERTEX_SHADER);
 	glShaderSource(m_VertexShader, 1, &VertexShader, NULL);
@@ -132,7 +132,7 @@ Sprite::Sprite( const char* a_pTexture, int a_iWidth, int a_iHeight, Vector4 a_v
 	m_v2Scale = Vectors(a_iWidth, a_iHeight); 
 	 
 
-	modelMatrix = new Matrix4(); 
+	 
 
 	*modelMatrix = modelMatrix->m_CreateIdentity(); 
 

@@ -44,13 +44,6 @@ int main()
 		fprintf (stderr,"ERROR: could not start GLFW3\n");
 		return 1;
 	}
-
-	// uncomment these lines if on Apple OS X
-	/*	glfwWindowHint (GLFW_CONTEXT_VERSION_MAJOR, 3);
-	glfwWindowHint (GLFW_CONTEXT_VERSION_MINOR, 2);
-	glfwWindowHint (GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
-	glfwWindowHint (GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-	*/	
 	//Anti-Aliasing
 	glfwWindowHint (GLFW_SAMPLES, 4);
 
@@ -87,8 +80,13 @@ int main()
 	glEnable (GL_DEPTH_TEST); // enable depth-testing
 	glDepthFunc (GL_LESS); // depth-testing interprets a smaller value as "closer"
 
-	Sprite * tester = new Sprite("megamanx.png",240,272, Vector4(1,1,1,1),window); 
+	//Sprite * tester = new Sprite("megamanx.png",240,272, Vector4(1,1,1,1),window); 
+	AnimatedSprite * AniTest = new AnimatedSprite("MegamanXSheet.xml", window); 
+	AnimatedSprite * AniTest2 = new AnimatedSprite("MegamanXSheet.xml", window); 
+	
+	AniTest2->m_v3Position.x += 50; 
 
+	AniTest->SetAnimation("teleport", ONCE); 
 	//int matrix_location = glGetUniformLocation (shaderProgram, "matrix");
 	//glUniform1i(glGetUniformLocation(shaderProgram, "Texture"), 0);
 
@@ -98,18 +96,9 @@ int main()
 	float oldTimeSinceStart = 0; 
 
 	while (!glfwWindowShouldClose (window)) {
-
-		/* add a timer for doing animation
-		static double previous_seconds = glfwGetTime ();
-		double current_seconds = glfwGetTime ();
-		double elapsed_seconds = current_seconds - previous_seconds;
-		previous_seconds = current_seconds;
-		// reverse direction when going to far left or right
-		if (fabs(last_position) > 1.0f) {
-		speed = -speed;
-		}
-		*/
-
+		glEnable(GL_ALPHA_TEST); 
+		glAlphaFunc(GL_GREATER, .5); 
+		glEnable(GL_ALPHA); 
 		glEnable (GL_CULL_FACE); // cull face
 		glCullFace (GL_BACK); //cull back face
 		glFrontFace (GL_CW); // GL_CCW for counter clock-wise
@@ -119,36 +108,9 @@ int main()
 		//resize window
 		glViewport (0, 0, g_gl_width, g_gl_height);
 
-		//TESTING TEXT
-
+		AniTest->Update(); 
+		AniTest2->Update(); 
 		
-		//_scale = computeScale(STRS);
-
-		//glfwDisplayFunc(drawScene);
-		//glfwGetKey(handleKeypress);
-		//glfwReshapeFunc(handleResize);
-		//glfwTimerFunc(25, update, 0);
-
-		//glfwMainLoop();
-
-
-		///////////////////////////////////////END TEST
-
-		// update the matrix
-		//  matrix[12] = elapsed_seconds * speed + last_position;
-		//  last_position = matrix[12];
-		//set the shader for this VAO
-		//	 glUseProgram (shaderProgram);
-		//Here is where we attach the marix
-		//	 glUniformMatrix4fv (matrix_location, 1, GL_FALSE, matrix);
-		//bind the VAO to be drawn
-		//	 glBindVertexArray (VAO);
-		// draw points 0-3 from the currently bound VAO with current			in-use shader
-		//	 glDrawArrays (GL_TRIANGLES, 0, 3);
-
-		tester->Input();
-		tester->Draw();
-
 		// update other events like input handling 
 		glfwPollEvents ();
 		// put the stuff we've been drawing onto the display
@@ -163,6 +125,4 @@ int main()
 	// close GL context and any other GLFW resources
 	glfwTerminate();
 	return 0;
-
-
 }

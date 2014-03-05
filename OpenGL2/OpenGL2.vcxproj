@@ -68,6 +68,7 @@
   <ItemGroup>
     <ClCompile Include="AnimatedSprite.cpp" />
     <ClCompile Include="GameEngine.cpp" />
+    <ClCompile Include="libs\tinyxml2-master\tinyxml2.cpp" />
     <ClCompile Include="Logging.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Quad.cpp" />
@@ -78,6 +79,7 @@
   <ItemGroup>
     <ClInclude Include="AnimatedSprite.h" />
     <ClInclude Include="GameEngine.h" />
+    <ClInclude Include="libs\tinyxml2-master\tinyxml2.h" />
     <ClInclude Include="Logging.h" />
     <ClInclude Include="Quad.h" />
     <ClInclude Include="Sprite.h" />
@@ -86,6 +88,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="FragShader.glsl" />
+    <None Include="resources\megamansheet.png" />
+    <None Include="resources\megamanx.png" />
+    <None Include="resources\MegamanXAnimations.xml" />
+    <None Include="resources\MegamanXSheet.png" />
+    <None Include="resources\MegamanXSheet.xml" />
     <None Include="VertexShader.glsl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
