@@ -31,7 +31,7 @@ public:
 	Matrix4 m_TranslationXYZ(float x, float y, float z); 
 	Matrix4 m_OrthoProjection(float l, float r, float b, float n, float f, float t); 
 	void m_OrthoVariables(float angle, float imageAspectRatio, float n, float f); 
-	Matrix4 m_CreateIdentity();
+	static Matrix4 m_CreateIdentity();
 	Matrix4 operator*(Matrix4 &w);
 	Matrix4 operator=(Matrix4 &w); 
 

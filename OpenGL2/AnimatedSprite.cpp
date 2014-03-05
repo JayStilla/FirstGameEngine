@@ -170,6 +170,7 @@ void AnimatedSprite::SetAnimation(std::string animation, PlayType type, int fram
 
 void AnimatedSprite::PlayAnimation()
 {
+	//controlling animations using deltatime and a switch statement
 	elapsedTime += getDeltaTime(); 
 
 	if(elapsedTime > m_dFrames)
@@ -221,28 +222,22 @@ void AnimatedSprite::PlayAnimation()
 
 void AnimatedSprite::Draw()
 {
-
+	//Drawing a matrix using specific info
 	modelMatrix->a_fMatricesMatrix3D[0] = m_v2Scale.x *m_fZoom; 
 	modelMatrix->a_fMatricesMatrix3D[5] = m_v2Scale.y *m_fZoom; 
 	modelMatrix->a_fMatricesMatrix3D[12] = m_v3Position.x; 
 	modelMatrix->a_fMatricesMatrix3D[13] = m_v3Position.y + ( (m_v2Scale.y *m_fZoom)/2.f); 
 	modelMatrix->a_fMatricesMatrix3D[14] = m_v3Position.z; 
 
-	Matrix4 MVP = (*Ortho * *modelMatrix); 
+	*MVP = (*Ortho * *modelMatrix); //making a new matrix by multiplying matrices
 
-	glUniformMatrix4fv(matrix_location, 1, GL_FALSE, MVP.a_fMatricesMatrix3D); 
-
-	glBindBuffer(GL_ARRAY_BUFFER, m_VBO); 
-	glBufferData(GL_ARRAY_BUFFER, 4* sizeof(Vertex), m_aoVerts, GL_DYNAMIC_DRAW); 
-
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_EBO); 
-	glBindVertexArray(m_VAO); 
-
-	glDrawElements(GL_TRIANGLE_STRIP, 4, GL_UNSIGNED_INT,0);
+	glUniformMatrix4fv(matrix_location, 1, GL_FALSE, MVP->a_fMatricesMatrix3D); 
+	Quad::Draw(); //call quad draw to do most of the openGL calls
 }
 
 void AnimatedSprite::Input()
 {
+	//inputs to test the different animations
 	Sprite::Input();
 	if(GLFW_PRESS == glfwGetKey(GameWindow, GLFW_KEY_P))
 	{
@@ -258,6 +253,7 @@ void AnimatedSprite::Input()
 
 void AnimatedSprite::Update()
 {
+	//call input, draw, and play animation so that in main you only have to call update
 	this->AnimatedSprite::Input(); 
 	this->AnimatedSprite::Draw(); 
 	PlayAnimation(); 

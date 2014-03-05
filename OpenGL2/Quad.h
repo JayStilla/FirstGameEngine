@@ -29,6 +29,8 @@ public:
 
 	GLFWwindow * GameWindow; 
 	Matrix4 * modelMatrix;
+	Matrix4 * viewMatrix; 
+	Matrix4* MVP; 
 
 	Vectors m_minUVCoords; 
 	Vectors m_maxUVCoords; 
@@ -40,6 +42,11 @@ public:
 	bool LoadFragShader(const char* filePath);
 	bool LinkShaders(); 
 	void LoadTexture(const char* a_pTexture); 
+	void SetUVData(); 
+	void SetColor();
+	void SetColor(Vector4 a_v4Color);
+	void SetColor(Vector4 a_v4Color0,Vector4 a_v4Color1,Vector4 a_v4Color2,Vector4 a_v4Color3);
+	
 private:
 
 };

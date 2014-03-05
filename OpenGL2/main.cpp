@@ -23,12 +23,14 @@ void glfw_window_size_callback (GLFWwindow* window, int width, int height) {
 
 void glfw_error_callback(int error, const char* description)
 {
-	fputs(description, stderr); 
+	fputs(description, stderr);
+	gl_log(description,__FILE__, __LINE__); 
 
 }
 
 int main()
 {
+	resetDeltaTime(); 
 	//setup to log some GLFW stuff
 
 	char message[256];
@@ -81,19 +83,12 @@ int main()
 	glDepthFunc (GL_LESS); // depth-testing interprets a smaller value as "closer"
 
 	//Sprite * tester = new Sprite("megamanx.png",240,272, Vector4(1,1,1,1),window); 
-	AnimatedSprite * AniTest = new AnimatedSprite("MegamanXSheet.xml", window); 
-	AnimatedSprite * AniTest2 = new AnimatedSprite("MegamanXSheet.xml", window); 
-	
-	AniTest2->m_v3Position.x += 50; 
-
+	AnimatedSprite * AniTest = new AnimatedSprite("MegamanXSheet.xml", window);  
 	AniTest->SetAnimation("teleport", ONCE); 
-	//int matrix_location = glGetUniformLocation (shaderProgram, "matrix");
-	//glUniform1i(glGetUniformLocation(shaderProgram, "Texture"), 0);
 
 	Ortho = new Matrix4(); 
 	Orthographic(0, g_gl_width, g_gl_height, 0, 0, -1, Ortho); 
 
-	float oldTimeSinceStart = 0; 
 
 	while (!glfwWindowShouldClose (window)) {
 		glEnable(GL_ALPHA_TEST); 
@@ -108,14 +103,14 @@ int main()
 		//resize window
 		glViewport (0, 0, g_gl_width, g_gl_height);
 
-		AniTest->Update(); 
-		AniTest2->Update(); 
-		
+		AniTest->Update();  
+	
 		// update other events like input handling 
 		glfwPollEvents ();
 		// put the stuff we've been drawing onto the display
 		glfwSwapBuffers (window);
 
+		resetDeltaTime(); 
 		//When do i exit?
 		if (GLFW_PRESS == glfwGetKey (window, GLFW_KEY_ESCAPE)) {
 			glfwSetWindowShouldClose (window, 1);
