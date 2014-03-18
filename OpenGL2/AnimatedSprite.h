@@ -2,10 +2,10 @@
 #define _ANIMATED_SPRITE_H_
 
 
-#include <tinyxml2.h>
+
 #include "Sprite.h"
 #include <string> 
-
+#include <tinyxml2.h>
 
 struct AniSprite
 {

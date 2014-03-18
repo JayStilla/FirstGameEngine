@@ -204,10 +204,10 @@ void Quad::LoadTexture(const char* a_pTexture)
 
 void Quad::SetUVData()
 {
-	m_aoVerts[1].UV = Vectors(m_minUVCoords.x/m_uvScale.x, m_minUVCoords.y/m_uvScale.y); 
-	m_aoVerts[3].UV = Vectors(m_minUVCoords.x/m_uvScale.x, m_maxUVCoords.y/m_uvScale.y);
-	m_aoVerts[0].UV = Vectors(m_maxUVCoords.x/m_uvScale.x, m_minUVCoords.y/m_uvScale.y);
-	m_aoVerts[2].UV = Vectors(m_maxUVCoords.x/m_uvScale.x, m_maxUVCoords.y/m_uvScale.y);
+	m_aoVerts[0].UV = Vectors(m_minUVCoords.x/m_uvScale.x, m_minUVCoords.y/m_uvScale.y); 
+	m_aoVerts[2].UV = Vectors(m_minUVCoords.x/m_uvScale.x, m_maxUVCoords.y/m_uvScale.y);
+	m_aoVerts[1].UV = Vectors(m_maxUVCoords.x/m_uvScale.x, m_minUVCoords.y/m_uvScale.y);
+	m_aoVerts[3].UV = Vectors(m_maxUVCoords.x/m_uvScale.x, m_maxUVCoords.y/m_uvScale.y);
 }
 
 void Quad::SetColor()

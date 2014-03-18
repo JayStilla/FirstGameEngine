@@ -31,27 +31,26 @@ AnimatedSprite::AnimatedSprite(const char* a_pSpriteSheet, GLFWwindow * window)
 	m_uvScale.y = atlas.v2Size.x; 
 	SetSprite(); 
 	SetUVData(); 
-
 }
 
 void AnimatedSprite::SetSprite()
 {
 	if(currentAnimation == "")
 	{
-		m_minUVCoords.x = mSprites["idle"].y0; 
-		m_minUVCoords.y = mSprites["idle"].x0; 
-		m_maxUVCoords.x = mSprites["idle"].y1; 
-		m_maxUVCoords.y = mSprites["idle"].x1; 
+		m_minUVCoords.x = mSprites["idle"].x0; 
+		m_minUVCoords.y = mSprites["idle"].y0; 
+		m_maxUVCoords.x = mSprites["idle"].x1; 
+		m_maxUVCoords.y = mSprites["idle"].y1; 
 
 		m_v2Scale.x = mSprites["idle"].width; 
 		m_v2Scale.y = mSprites["idle"].height; 
 	}
 	else
 	{
-		m_minUVCoords.x = mSprites[currentSprite].y0; 
-		m_minUVCoords.y = mSprites[currentSprite].x0; 
-		m_maxUVCoords.x = mSprites[currentSprite].y1; 
-		m_maxUVCoords.y = mSprites[currentSprite].x1; 
+		m_minUVCoords.x = mSprites[currentSprite].x0; 
+		m_minUVCoords.y = mSprites[currentSprite].y0; 
+		m_maxUVCoords.x = mSprites[currentSprite].x1; 
+		m_maxUVCoords.y = mSprites[currentSprite].y1; 
 		m_v2Scale.x = mSprites[currentSprite].width; 
 		m_v2Scale.y = mSprites[currentSprite].height; 
 

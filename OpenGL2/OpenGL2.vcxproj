@@ -73,7 +73,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Quad.cpp" />
     <ClCompile Include="Sprite.cpp" />
-    <ClCompile Include="Text.cpp" />
+    <ClCompile Include="TextManager.cpp" />
     <ClCompile Include="Utilities.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -83,16 +83,21 @@
     <ClInclude Include="Logging.h" />
     <ClInclude Include="Quad.h" />
     <ClInclude Include="Sprite.h" />
-    <ClInclude Include="Text.h" />
+    <ClInclude Include="TextManager.h" />
     <ClInclude Include="Utilities.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="fontFrag.glsl" />
+    <None Include="fontVert.glsl" />
     <None Include="FragShader.glsl" />
+    <None Include="MegamanXAnimations.xml" />
+    <None Include="MegamanXSheet.xml" />
+    <None Include="NESish - Copy.png" />
+    <None Include="NESish.png" />
+    <None Include="NESish.xml" />
     <None Include="resources\megamansheet.png" />
     <None Include="resources\megamanx.png" />
-    <None Include="resources\MegamanXAnimations.xml" />
     <None Include="resources\MegamanXSheet.png" />
-    <None Include="resources\MegamanXSheet.xml" />
     <None Include="VertexShader.glsl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

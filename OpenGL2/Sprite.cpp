@@ -84,10 +84,6 @@ void Sprite::Input()
         {
 			m_v3Position += Vector3(0.0f, 1.f, 0.0f);
 	  }
-	  if (GLFW_PRESS == glfwGetKey(GameWindow, GLFW_KEY_A))
-        {
-                m_v3Position += Vector3(1.f, 0.0f, 0.0f);
-        }
 
         if (GLFW_PRESS == glfwGetKey(GameWindow, GLFW_KEY_A))
         {
@@ -96,6 +92,10 @@ void Sprite::Input()
         if (GLFW_PRESS == glfwGetKey(GameWindow, GLFW_KEY_S))
         {
 			m_v3Position += Vector3(0.0f, -1.f, 0.0f);
+		}
+		 if (GLFW_PRESS == glfwGetKey(GameWindow, GLFW_KEY_D))
+        {
+			m_v3Position += Vector3(1.0f, 0.f, 0.0f);
 		}
 		 if (GLFW_PRESS == glfwGetKey(GameWindow, GLFW_KEY_C))
         {
@@ -124,5 +124,36 @@ void Sprite::Input()
 void Sprite::SetPosition(Vector3 a_v3Pos)
 {
 	Vector3 m_v3Position = a_v3Pos;
+
+}
+void Sprite::SetPosition(float a_fX, float a_fY)
+{
+	m_v3Position.x  = a_fX;
+	m_v3Position.y  = a_fY;
+
+}
+Vector3 Sprite::GetPosition()
+{
+	return m_v3Position;
+
+}
+void Sprite::SetScale(Vectors a_v2Scale)
+{
+	m_v2Scale = a_v2Scale;
+}
+void Sprite::SetScale(float a_fScale)
+{
+	m_v2Scale.x = a_fScale;
+	m_v2Scale.y = a_fScale;
+}
+
+void Sprite::SetScale(float a_fScaleX,float a_fScaleY)
+{
+	m_v2Scale.x = a_fScaleX;
+	m_v2Scale.y = a_fScaleY;
+}
+Vectors Sprite::GetScale()
+{
+	return m_v2Scale;
 
 }

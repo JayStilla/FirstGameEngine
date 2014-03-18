@@ -33,13 +33,13 @@
     <ClCompile Include="Logging.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Text.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="AnimatedSprite.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="libs\tinyxml2-master\tinyxml2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TextManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -59,13 +59,13 @@
     <ClInclude Include="Utilities.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Text.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="AnimatedSprite.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="libs\tinyxml2-master\tinyxml2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TextManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -85,10 +85,25 @@
     <None Include="resources\MegamanXSheet.png">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="resources\MegamanXAnimations.xml">
+    <None Include="MegamanXAnimations.xml">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="resources\MegamanXSheet.xml">
+    <None Include="MegamanXSheet.xml">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="NESish.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="NESish.xml">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="fontVert.glsl">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="fontFrag.glsl">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="NESish - Copy.png">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>

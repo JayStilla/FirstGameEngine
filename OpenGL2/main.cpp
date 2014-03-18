@@ -7,7 +7,7 @@
 #include <iostream>
 #include <SOIL.h>
 #include "Sprite.h"
-#include "Text.h"
+#include "TextManager.h"
 #include "Utilities.h"
 #include "Quad.h"
 #include "AnimatedSprite.h"
@@ -89,6 +89,7 @@ int main()
 	Ortho = new Matrix4(); 
 	Orthographic(0, g_gl_width, g_gl_height, 0, 0, -1, Ortho); 
 
+	TextManager::Instance().LoadFont("../NESish.xml");
 
 	while (!glfwWindowShouldClose (window)) {
 		glEnable(GL_ALPHA_TEST); 
@@ -103,7 +104,10 @@ int main()
 		//resize window
 		glViewport (0, 0, g_gl_width, g_gl_height);
 
-		AniTest->Update();  
+		AniTest->Update(); 
+		TextManager::Instance().DrawString("What it do!",Vectors(0,g_gl_height/2),1); 
+		//tester->Draw();
+		//tester->Input(); 
 	
 		// update other events like input handling 
 		glfwPollEvents ();
