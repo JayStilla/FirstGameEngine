@@ -87,6 +87,7 @@
     <ClInclude Include="Utilities.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
     <None Include="fontFrag.glsl" />
     <None Include="fontVert.glsl" />
     <None Include="FragShader.glsl" />

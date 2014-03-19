@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<TextureAtlas imagePath="../resources/NESish.png"  width="132" height= "132" kerning= "3">
+<TextureAtlas imagePath="NESish.png"  width="132" height= "132" kerning= "3">
 	<char name="!" x="114" y="86" width="8" height="16" offset="7"/>
 	<char name="#" x="75" y="0" width="13" height="14" offset="7"/>
 	<char name="$" x="101" y="61" width="12" height="14" offset="7"/>

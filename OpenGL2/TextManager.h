@@ -1,7 +1,7 @@
 #ifndef _TEXTMANAGER_H_
 #define _TEXTMANAGER_H_
 #include "Utilities.h"
-#include <tinyxml2.h>
+//#include <tinyxml2.h>
 #include "AnimatedSprite.h"
 
 struct Char 

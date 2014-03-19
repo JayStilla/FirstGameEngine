@@ -123,7 +123,7 @@ void Sprite::Input()
 
 void Sprite::SetPosition(Vector3 a_v3Pos)
 {
-	Vector3 m_v3Position = a_v3Pos;
+	m_v3Position = a_v3Pos;
 
 }
 void Sprite::SetPosition(float a_fX, float a_fY)

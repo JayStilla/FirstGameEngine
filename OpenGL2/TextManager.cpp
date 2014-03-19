@@ -143,10 +143,10 @@ void TextManager::DrawString(std::string str, Vectors pos, float scale)
 			else{
 				newPos = iSprite.GetPosition().x + c.width/2 + DrawList[i-1].width/2 + TextAtlas.fKerning;
 			}
-			iSprite.SetPosition(Vector3(newPos, pos.x, 0.f)); 
+			iSprite.SetPosition(Vector3(newPos, pos.y, 0.f)); 
 		}
 		else 
-			iSprite.SetPosition(Vector3(pos.y + c.width/2, pos.x, 0.f)); 
+			iSprite.SetPosition(Vector3(pos.x + c.width/2, pos.y, 0.f)); 
 
 		iSprite.m_minUVCoords = Vectors(c.x0, c.y0); 
 		iSprite.m_maxUVCoords = Vectors(c.x1, c.y1); 
@@ -155,7 +155,7 @@ void TextManager::DrawString(std::string str, Vectors pos, float scale)
 		iSprite.SetUVData(); 
 
 		iSprite.modelMatrix->a_fMatricesMatrix3D[0] = iSprite.GetScale().x *iSprite.m_fZoom;
-		iSprite.modelMatrix->a_fMatricesMatrix3D[5] = iSprite.GetScale().y *iSprite.m_fZoom;		iSprite.modelMatrix->a_fMatricesMatrix3D[12] = iSprite.GetPosition().x; 
+		iSprite.modelMatrix->a_fMatricesMatrix3D[5] = iSprite.GetScale().y *iSprite.m_fZoom;					iSprite.modelMatrix->a_fMatricesMatrix3D[12] = iSprite.GetPosition().x; 
 		iSprite.modelMatrix->a_fMatricesMatrix3D[13] = iSprite.GetPosition().y - (c.offset *iSprite.m_fZoom); 
 		iSprite.modelMatrix->a_fMatricesMatrix3D[14] = iSprite.GetPosition().z; 
 
