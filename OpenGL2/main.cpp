@@ -105,7 +105,7 @@ int main()
 		glViewport (0, 0, g_gl_width, g_gl_height);
 
 		AniTest->Update(); 
-		TextManager::Instance().DrawString("Hello I am MegaMan",Vectors(g_gl_width/2,g_gl_height/2),1); 
+		TextManager::Instance().DrawString("Jayce Sucks",Vectors(g_gl_width/2,g_gl_height/2),1); 
 		//tester->Draw();
 		//tester->Input(); 
 	
