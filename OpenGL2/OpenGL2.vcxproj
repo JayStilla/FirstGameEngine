@@ -37,10 +37,11 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(ProjectDir)\libs\glfw3\include;$(ProjectDir)\libs\glew\include;$(ProjectDir)\libs\Simple OpenGL Image Library\src;$(ProjectDir)\libs\glm;$(ProjectDir)\libs\JayceDaBestMathLibrary;$(ProjectDir)\libs\FreeType\include;$(ProjectDir)\libs\tinyxml2-master;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)libs;$(ProjectDir)include;$(ProjectDir)\libs\glfw3\include;$(ProjectDir)\libs\glew\include;$(ProjectDir)\libs\Simple OpenGL Image Library\src;$(ProjectDir)\libs\glm;$(ProjectDir)\libs\JayceDaBestMathLibrary;$(ProjectDir)\libs\FreeType\include;$(ProjectDir)\libs\tinyxml2-master;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LibraryPath>$(ProjectDir)\libs\glfw3\lib-msvc110;$(ProjectDir)\libs\glew\lib;$(ProjectDir)\libs\Simple OpenGL Image Library\lib;$(ProjectDir)\libs\JayceIsDaBestMathLibrary\Debug;$(LibraryPath)</LibraryPath>
+    <SourcePath>$(ProjectDir)source;$(VCInstallDir)atlmfc\src\mfc;$(VCInstallDir)atlmfc\src\mfcm;$(VCInstallDir)atlmfc\src\atl;$(VCInstallDir)crt\src;</SourcePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -66,25 +67,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="AnimatedSprite.cpp" />
-    <ClCompile Include="GameEngine.cpp" />
+    <ClCompile Include="source\AnimatedSprite.cpp" />
+    <ClCompile Include="source\GameEngine.cpp" />
     <ClCompile Include="libs\tinyxml2-master\tinyxml2.cpp" />
-    <ClCompile Include="Logging.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="Quad.cpp" />
-    <ClCompile Include="Sprite.cpp" />
-    <ClCompile Include="TextManager.cpp" />
-    <ClCompile Include="Utilities.cpp" />
+    <ClCompile Include="source\Logging.cpp" />
+    <ClCompile Include="source\main.cpp" />
+    <ClCompile Include="source\Quad.cpp" />
+    <ClCompile Include="source\Sprite.cpp" />
+    <ClCompile Include="source\TextManager.cpp" />
+    <ClCompile Include="source\Utilities.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AnimatedSprite.h" />
-    <ClInclude Include="GameEngine.h" />
+    <ClInclude Include="include\AnimatedSprite.h" />
+    <ClInclude Include="include\GameEngine.h" />
     <ClInclude Include="libs\tinyxml2-master\tinyxml2.h" />
-    <ClInclude Include="Logging.h" />
-    <ClInclude Include="Quad.h" />
-    <ClInclude Include="Sprite.h" />
-    <ClInclude Include="TextManager.h" />
-    <ClInclude Include="Utilities.h" />
+    <ClInclude Include="include\Logging.h" />
+    <ClInclude Include="include\Quad.h" />
+    <ClInclude Include="include\Sprite.h" />
+    <ClInclude Include="include\TextManager.h" />
+    <ClInclude Include="include\Utilities.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram1.cd" />

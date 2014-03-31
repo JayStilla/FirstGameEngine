@@ -5,10 +5,10 @@
 #include <GLFW\glfw3.h>
 #include <iostream>
 #include <SOIL.h>
-#include "libs\JayceIsDaBestMathLibrary\Matrix4.h"
-#include "libs\JayceIsDaBestMathLibrary\Vect2.h"
-#include "libs\JayceIsDaBestMathLibrary\Vect3.h"
-#include "libs\JayceIsDaBestMathLibrary\Vect4.h"
+#include <JayceIsDaBestMathLibrary\Matrix4.h>
+#include <JayceIsDaBestMathLibrary\Vect2.h>
+#include <JayceIsDaBestMathLibrary\Vect3.h>
+#include <JayceIsDaBestMathLibrary\Vect4.h>
 #include <map>
 #include <queue>
 #include <vector>
